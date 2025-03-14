@@ -16,7 +16,7 @@ namespace Task_Management.Controllers
             _authService = authService;
         }
 
-        [HttpPost("login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             _ = new AmazonCognitoIdentityProviderClient();

@@ -12,6 +12,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<CognitoAuthService>();
+builder.Services.AddSingleton<ProjectService>();
+builder.Services.AddSingleton<TaskService>();
 
 var awsOptions = builder.Configuration.GetSection("AWS");
 
