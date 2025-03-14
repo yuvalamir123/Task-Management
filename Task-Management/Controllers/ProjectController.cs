@@ -33,7 +33,8 @@ public class ProjectController : ControllerBase
         return project != null ? Ok(project) : NotFound("Project not found.");
     }
 
-    [HttpPost] 
+    [HttpPost]
+    [Authorize(Roles = "Admin")]
     public IActionResult CreateProject([FromBody] Project project)
     {
         if (project == null || string.IsNullOrWhiteSpace(project.Name))
@@ -46,7 +47,8 @@ public class ProjectController : ControllerBase
         return CreatedAtRoute("GetProjectById", new { projectId = createdProject.Id }, createdProject);
     }
 
-    [HttpPut("{projectId}")] 
+    [HttpPut("{projectId}")]
+    [Authorize(Roles = "Admin")]
     public IActionResult UpdateProject(string projectId, [FromBody] Project project)
     {
         if (!_projectService.UpdateProject(projectId, project))
@@ -56,6 +58,7 @@ public class ProjectController : ControllerBase
     }
 
     [HttpDelete("{projectId}")]
+    [Authorize(Roles = "Admin")]
     public IActionResult DeleteProject(string projectId)
     {
         if (!_projectService.DeleteProject(projectId))

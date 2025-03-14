@@ -29,7 +29,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuer = true,
             ValidIssuer = $"https://cognito-idp.{awsOptions["Region"]}.amazonaws.com/{awsOptions["UserPoolId"]}",
             ValidateAudience = false,
-            ValidateLifetime = true
+            ValidateLifetime = true,
+            RoleClaimType = "cognito:groups"
         };
 
         // Specify how to get the JWKS
@@ -38,6 +39,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             new OpenIdConnectConfigurationRetriever(),
             new HttpDocumentRetriever());
     });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
+});
 
 builder.Services.AddSwaggerGen(c =>
 {

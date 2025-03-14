@@ -19,7 +19,8 @@ public class TaskController : ControllerBase
         _taskService = taskService;
     }
 
-    [HttpPost] 
+    [HttpPost]
+    [Authorize(Roles = "Admin")]
     public IActionResult CreateTask(string projectId, [FromBody] TaskItem task)
     {
         var createdTask = _taskService.CreateTask(projectId, task);
@@ -52,7 +53,8 @@ public class TaskController : ControllerBase
         return Ok(task);
     }
 
-    [HttpPut("{taskId}")] 
+    [HttpPut("{taskId}")]
+    [Authorize(Roles = "Admin")]
     public IActionResult UpdateTask(string projectId, string taskId, [FromBody] TaskItem task)
     {
         if (!_taskService.UpdateTask(projectId, taskId, task))
@@ -61,7 +63,8 @@ public class TaskController : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete("{taskId}")] 
+    [HttpDelete("{taskId}")]
+    [Authorize(Roles = "Admin")]
     public IActionResult DeleteTask(string projectId, string taskId)
     {
         if (!_taskService.DeleteTask(projectId, taskId))
