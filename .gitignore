@@ -2,3 +2,5 @@
 /.vs
 /Task-Management/obj
 /Task-Management/bin
+/TaskManagement.Tests/bin
+/TaskManagement.Tests/obj
