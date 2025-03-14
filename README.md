@@ -49,3 +49,15 @@ This is a **RESTful API** for managing projects and tasks. The API allows users 
 
 The API is secured with **AWS Cognito**. Users must include a valid **JWT token** in the `Authorization` header for all requests.
 
+### Test Users  
+For testing purposes, the following users are available:  
+
+- **Admin User:**  
+  - **Username:** `user1`  
+  - **Password:** `Ab1234567!`  
+  - **Group:** `Admin`  
+
+- **Regular User:**  
+  - **Username:** `user2`  
+  - **Password:** `Ab1234567!`  
+
